@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', function () {
     return view('admin.pages.index');
 });
+
+Route::get('/', function () {
+    return view('index');
+});
+
+
+//PRODUCT MANAGEMENT
+Route::get('/admin/addproduct', function () {
+    return view('admin.pages.product_management.addproduct_page');
+})->name('sideNavPageForRelease');
+// Route::get('dashboard/forelease', [ForCustodianController::class, 'ShowPage'])->name('sideNavPageForRelease');
