@@ -23,7 +23,17 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+
+              if (auth()->user()) {
+
+                return redirect()->route('admin.page');
+
+              } else {
+
+                  return redirect()->route('login')->with('msg','You are not allowed to access this system');
+
+              }
+
             }
         }
 
