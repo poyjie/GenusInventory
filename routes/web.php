@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Middleware\CheckUserLogin;
 use App\Http\Middleware\PreventBackHistory;
-
+use App\Http\Controllers\addproductsController;
 
 Route::middleware(['guest:web', 'prevent.back.history'])->group(function () {
 
@@ -22,14 +22,13 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
 
     Route::get('/admin', [CustomAuthController::class, 'dashboard'])->name('admin.page');
 
-    //PRODUCT MANAGEMENT
+    //MENU
     Route::get('/admin/addproduct', function () {
         return view('admin.pages.product_management.addproduct_page');
     })->name('addproduct.page');
 
 
+    Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
+
 
 });
-
-
-// Route::get('dashboard/forelease', [ForCustodianController::class, 'ShowPage'])->name('sideNavPageForRelease');

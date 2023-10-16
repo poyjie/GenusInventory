@@ -6,11 +6,12 @@
             <div class="col-lg-6">
             <h5 class="card-title">Add Product Form</h5>
             <!-- General Form Elements -->
-            <form>
+            <form id="frm-addproduct">
+                @csrf
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Select</label>
                     <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" id="category">
                         <option selected>Category</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -20,38 +21,45 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">Name </label>
+                    <label for="inputText" class="col-sm-2 col-form-label" >Name </label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="prodname">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">SKU </label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="sku">
                 </div>
                 </div>
 
                 <div class="row mb-3">
                 <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control"  id="prodnum">
                 </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label for="inputNumber" class="col-sm-2 col-form-label">Price:</label>
+                    <div class="col-sm-10">
+                    <input type="number" class="form-control" min="0" id="price">
+                    </div>
                 </div>
 
 
                 <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Stock In:</label>
                     <div class="col-sm-10">
-                    <input type="number" class="form-control" min="0">
+                    <input type="number" class="form-control" min="0" id="stockin">
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Minimum Stock:</label>
                     <div class="col-sm-10">
-                    <input type="number" class="form-control" min="0">
+                    <input type="number" class="form-control" min="0"  id="minstock">
                     </div>
                 </div>
 
@@ -73,4 +81,45 @@
     </div>
 </div>
 
+
+
+
+
 @endsection
+
+@push('scripts')
+
+<script>
+    $("#frm-addproduct").submit(function (event) {
+       event.preventDefault();
+
+
+       var formData = {
+         _token: $("input[name=_token]").val(),
+         category:$("#category").val(),
+         sku: $("#sku").val(),
+         number: $("#prodnum").val(),
+         name: $("#prodname").val(),
+         stock: $("#stockin").val(),
+         min_stock:$("#minstock").val(),
+         price:$("#price").val(),
+       };
+
+       console.log(formData);
+
+       $.ajax({
+         type: "POST",
+         url: "{{route('addproducts.store')}}",
+         data: formData,
+         dataType: "json",
+         encode: true,
+       }).done(function (data) {
+         if (data.msg) {
+           alert(data.msg)
+
+         }
+       });
+     });
+</script>
+
+@endpush
