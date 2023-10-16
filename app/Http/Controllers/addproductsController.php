@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class addproductsController extends Controller
 {
@@ -27,4 +28,16 @@ class addproductsController extends Controller
         'approved'=>$request->input('id', [])
       ],200);
     }
+
+    public function GetProducts()
+    {
+      $data = DB::table('products')
+          ->select(DB::raw('*'))
+          ->get();
+
+      return response()->json(['data'=> $data]);
+    }
+
+
+
 }

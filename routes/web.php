@@ -27,8 +27,11 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
         return view('admin.pages.product_management.addproduct_page');
     })->name('addproduct.page');
 
-
+    //FORMS
     Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
+
+    //DISPLAYS
+    Route::get('/admin/addproduct/getproducts', [addproductsController::class, 'GetProducts'])->name('addproducts.getproducts');
 
 
 });
