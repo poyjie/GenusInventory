@@ -122,7 +122,7 @@
             { data: 'sku' },
             { data: 'number' },
             { data: 'name' },
-            { data: 'stock' },
+            { data: 'totalstocks' },
             { data: 'min_stock' },
             { data: 'price' },
         ]

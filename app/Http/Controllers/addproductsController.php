@@ -31,11 +31,20 @@ class addproductsController extends Controller
 
     public function GetProducts()
     {
-      $data = DB::table('products')
+      $data = DB::table('mysales')
           ->select(DB::raw('*'))
           ->get();
 
       return response()->json(['data'=> $data]);
+    }
+
+    public function GetProductsCashier()
+    {
+      $data = DB::table('products')
+          ->select(DB::raw('sku,name,price,stock,id'))
+          ->get()->toArray();
+
+      return response()->json($data);
     }
 
 

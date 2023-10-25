@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+// use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class CustomAuthController extends Controller
 {
@@ -18,25 +19,27 @@ class CustomAuthController extends Controller
     {
 
         $request->validate([
-            'email' => 'required',
+            'cpnumber' => 'required',
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('cpnumber', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = DB::table('users')
                   ->select(DB::raw('*'))
-                  ->where('email', '=', $request->email)
+                  ->where('cpnumber', '=', $request->cpnumber)
                   ->get();
+
             print_r( $user );
+
             session()->put('user', $user);
 
             return redirect()->intended('admin')
                         ->withSuccess('Signed in');
         }
 
-        return redirect("login")->with(['msg'=>'Login details are not valid']);
+        return redirect("/")->with(['msg'=>'Login details are not valid']);
     }
 
     public function registration()
@@ -60,7 +63,7 @@ class CustomAuthController extends Controller
     public function create(array $data)
     {
       return User::create([
-        'name' => $data['name'],
+        'cpnumber' => $data['cpnumber'],
         'email' => $data['email'],
         'password' => Hash::make($data['password'])
       ]);
