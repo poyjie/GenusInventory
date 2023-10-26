@@ -48,22 +48,24 @@
                     <a href="index.html" class="js-logo-clone">Genus</a>
                   </div>
                 </div>
+                @if (session()->has('user'))
+                    <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                        <div class="site-top-icons">
+                        <ul>
+                            <li><a href="#"><span class="icon icon-person"></span></a></li>
+                            <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
+                            <li>
+                            <a href="cart.html" class="site-cart">
+                                <span class="icon icon-shopping_cart"></span>
+                                <span class="count"></span>
+                            </a>
+                            </li>
+                            <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                        </ul>
+                        </div>
+                    </div>
+                @endif
 
-                <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-                  <div class="site-top-icons">
-                    <ul>
-                      <li><a href="#"><span class="icon icon-person"></span></a></li>
-                      <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
-                      <li>
-                        <a href="cart.html" class="site-cart">
-                          <span class="icon icon-shopping_cart"></span>
-                          <span class="count">2</span>
-                        </a>
-                      </li>
-                      <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
-                    </ul>
-                  </div>
-                </div>
 
               </div>
             </div>
@@ -73,12 +75,12 @@
               <ul class="site-menu js-clone-nav d-none d-md-block">
                 <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
+                <li><a href="#">Contact</a></li>
                 @if (session()->has('user'))
                     <li><a href="{{ route('signout') }}">Signout</a></li>
                 @else
                     <li><a href="/login">Login</a></li>
                 @endif
-                <li><a href="contact.html">Contact</a></li>
               </ul>
             </div>
           </nav>
