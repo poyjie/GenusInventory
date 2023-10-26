@@ -10,10 +10,16 @@ use Illuminate\Support\Facades\DB;
 
 class CustomAuthController extends Controller
 {
-    public function index()
+    public function index_loginadmin()
     {
-        return view('index');
+        return view('index_admin');
     }
+
+    public function index_logincustomer()
+    {
+        return view('index_customer');
+    }
+
 
     public function customLogin(Request $request)
     {

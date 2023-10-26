@@ -10,13 +10,19 @@ class addproductsController extends Controller
     public function Store(Request $request)
     {
         $products = new Products();
-        $products->sku = $request->input('sku');
-        $products->number = $request->input('number');
-        $products->category = $request->input('category');
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'products'");
+
+        $products->supplierid = $request->input('supplierid');
+
+        $products->brandid = $request->input('brandid');
+        $products->categoryid = $request->input('categoryid');
+        $products->sku =  '00'.$request->input('supplierid').'00'.$request->input('brandid').'00'.$request->input('categoryid').'00'.$statement[0]->Auto_increment;
+
         $products->name = $request->input('name');
-        $products->stock = $request->input('stock');
+        $products->proddesc = $request->input('proddesc');
+        $products->baseprice = $request->input('baseprice');
+        $products->sellprice = $request->input('sellprice');
         $products->min_stock = $request->input('min_stock');
-        $products->price = $request->input('price');
         $products->image ='NA';
 
         $products->save();
@@ -25,13 +31,12 @@ class addproductsController extends Controller
 
       return response()->json([
         'msg'=>'Successfully Saved',
-        'approved'=>$request->input('id', [])
       ],200);
     }
 
     public function GetProducts()
     {
-      $data = DB::table('mysales')
+      $data = DB::table('v_products')
           ->select(DB::raw('*'))
           ->get();
 
@@ -40,8 +45,8 @@ class addproductsController extends Controller
 
     public function GetProductsCashier()
     {
-      $data = DB::table('products')
-          ->select(DB::raw('sku,name,price,stock,id'))
+      $data = DB::table('v_products')
+          ->select(DB::raw('*'))
           ->get()->toArray();
 
       return response()->json($data);
