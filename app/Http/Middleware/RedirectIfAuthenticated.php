@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
 
               if (auth()->user()) {
 
-                return redirect()->route('admin.page');
+                return redirect()->route('check.page');
 
               } else {
 

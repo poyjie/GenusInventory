@@ -12,12 +12,12 @@ class CustomAuthController extends Controller
 {
     public function index_loginadmin()
     {
-        return view('index_admin');
+        return view('admin.index');
     }
 
     public function index_logincustomer()
     {
-        return view('index_customer');
+        return view('customer.index');
     }
 
 
@@ -37,55 +37,40 @@ class CustomAuthController extends Controller
                   ->where('cpnumber', '=', $request->cpnumber)
                   ->get();
 
-            print_r( $user );
+            // print_r( $user );
 
             session()->put('user', $user);
+            $roleid = session('user')[0]->roleid;
+            if ( $roleid=="2"){
+                return redirect("/admin")->with(['msg'=>'Login details are not valid']);
+            }else{
+                return redirect("/customer")->with(['msg'=>'Login details are not valid']);
+            }
 
-            return redirect()->intended('admin')
-                        ->withSuccess('Signed in');
+
         }
 
-        return redirect("/")->with(['msg'=>'Login details are not valid']);
+        return redirect("/login")->with(['msg'=>'Login details are not valid']);
     }
 
-    public function registration()
-    {
-        return view('auth.registration');
-    }
-
-    public function customRegistration(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-
-        $data = $request->all();
-        $check = $this->create($data);
-
-        return redirect("dashboard")->withSuccess('You have signed-in');
-    }
-
-    public function create(array $data)
-    {
-      return User::create([
-        'cpnumber' => $data['cpnumber'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
-    }
-
-    public function dashboard()
+   public function dashboard()
     {
         if(Auth::check()){
-            return view('admin.pages.index');
+
+            $roleid = session('user')[0]->roleid;
+            if ( $roleid=="2"){
+                return view('admin.pages.index');
+            }else{
+                return view('customer.pages.index');
+            }
+
         }
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("/login")->withSuccess('You are not allowed to access');
     }
 
     public function signOut() {
         Session::flush();
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('userlogin');
     }
 }

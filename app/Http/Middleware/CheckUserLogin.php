@@ -12,7 +12,7 @@ class checkUserLogin
         if (auth()->user()) {
               return $next($request);
         } else {
-            return redirect()->route('login')->with('msg','You are not allowed to access this system');
+            return redirect()->route('userlogin')->with('msg','You are not allowed to access this system');
         }
     }
 }

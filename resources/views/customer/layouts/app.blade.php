@@ -1,18 +1,7 @@
-@include('admin.layouts.header')
-
-
-<main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>{{  $title  }} </h1>
-    </div><!-- End Page Title -->
-
+@include('customer.layouts.header')
     <section class="section">
-        @yield('content')
+        @yield('content_customer')
     </section>
-
-  </main><!-- End #main -->
-
-  @include('admin.layouts.footer')
+ @include('customer.layouts.footer')
 
 

@@ -11,30 +11,29 @@ use App\Http\Controllers\salesController;
 
 Route::middleware(['guest:web', 'prevent.back.history'])->group(function () {
     Route::get('/', function () {
-        return view('admin.pages.index');
-    })->name('logincustomer');
+        return view('customer.pages.index');
+    })->name('mainpage');
 
-    Route::get('/customer', [CustomAuthController::class, 'index_logincustomer'])->name('logincustomer');
-    Route::get('/admin', [CustomAuthController::class, 'index_loginadmin'])->name('loginadmin');
+    Route::get('/login', [CustomAuthController::class, 'index_logincustomer'])->name('userlogin');
+    // Route::get('/login', [CustomAuthController::class, 'index_loginadmin'])->name('loginadmin');
     Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 });
 
+Route::get('/', [CustomAuthController::class, 'dashboard'])->name('check.page');
 
 Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group(function(){
 
-    Route::get('/admin', function () {
-        return view('admin.pages.index');
-    });
 
-    Route::get('/customer', function () {
-        return view('customer.pages.index');
-    });
+    Route::get('/customer', [CustomAuthController::class, 'dashboard'])->name('check.page');
+
+    Route::get('/admin', [CustomAuthController::class, 'dashboard'])->name('check.page');
+
 
     Route::get('/signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-    Route::get('/admin', [CustomAuthController::class, 'dashboard'])->name('admin.page');
 
-    //MENU
+
+    //MENU ADMIN
     Route::get('/admin/addcustomer', function () {
         return view('admin.pages.customer_profile.addcustomer');
     })->name('addcustomer.page');
@@ -50,6 +49,8 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
     Route::get('/admin/stockin', function () {
         return view('admin.pages.inventory.stockin');
     })->name('stockin.page');
+
+
 
     //FORMS
     Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
@@ -67,3 +68,12 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
 
 Route::get('/admin/addproduct/getproducts/cashier', [addproductsController::class, 'GetProductsCashier'])->name('addproducts.getproducts.cashier');
 Route::post('/cashier/storesales', [salesController::class, 'store'])->name('cashier.storesales');
+
+//MENU MAIN PAGE
+Route::get('/shop', function () {
+    return view('customer.pages.shop');
+})->name('shop.page');
+
+Route::get('/shop/single', function () {
+    return view('customer.pages.shop_single');
+})->name('shopsingle.page');

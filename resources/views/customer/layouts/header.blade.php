@@ -14,122 +14,72 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="{{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <link href="{{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-  <link href="{{asset('assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet')}}">
-  <link href="{{asset('assets/vendor/quill/quill.snow.css')}}" rel="stylesheet">
-  <link href="{{asset('assets/vendor/quill/quill.bubble.css')}}" rel="stylesheet">
-  <link href="{{asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
-  <link href="{{asset('assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">
-  <link href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-  <!-- Template Main CSS File -->
-  <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+  <link rel="stylesheet" href="{{asset('assets/customer/fonts/icomoon/style.css')}}">
+
+  <link rel="stylesheet" href="{{asset('assets/customer/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/customer/css/magnific-popup.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/customer/css/jquery-ui.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/customer/css/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/customer/css/owl.theme.default.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/customer/css/aos.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/customer/css/style.css')}}">
 
 </head>
-@include('admin.layouts.spinner')
+@include('customer.layouts.spinner')
 <body>
+    <div class="site-wrap">
+        <header class="site-navbar" role="banner">
+          <div class="site-navbar-top">
+            <div class="container">
+              <div class="row align-items-center">
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+                <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+                  <form action="" class="site-block-top-search">
+                    <span class="icon icon-search2"></span>
+                    <input type="text" class="form-control border-0" placeholder="Search">
+                  </form>
+                </div>
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="/admin/addproduct" class="logo d-flex align-items-center">
-        {{-- <img src="assets/img/logo.png" alt=""> --}}
-        <span class="d-none d-lg-block">iGenus System</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+                <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                  <div class="site-logo">
+                    <a href="index.html" class="js-logo-clone">Genus</a>
+                  </div>
+                </div>
 
+                <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                  <div class="site-top-icons">
+                    <ul>
+                      <li><a href="#"><span class="icon icon-person"></span></a></li>
+                      <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
+                      <li>
+                        <a href="cart.html" class="site-cart">
+                          <span class="icon icon-shopping_cart"></span>
+                          <span class="count">2</span>
+                        </a>
+                      </li>
+                      <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                    </ul>
+                  </div>
+                </div>
 
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-        <li class="nav-item dropdown pe-3">
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            {{-- <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> --}}
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{ route('signout') }}">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
-            </li>
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/admin/">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/admin/">
-          <i class="bi bi-grid"></i>
-          <span>Online Store</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
+              </div>
+            </div>
+          </div>
+          <nav class="site-navigation text-right text-md-center" role="navigation">
+            <div class="container">
+              <ul class="site-menu js-clone-nav d-none d-md-block">
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                @if (session()->has('user'))
+                    <li><a href="{{ route('signout') }}">Signout</a></li>
+                @else
+                    <li><a href="/login">Login</a></li>
+                @endif
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
