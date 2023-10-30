@@ -82,7 +82,7 @@
 
                     </form><!-- End General Form Elements -->
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 table-responsive">
                     <h5 class="card-title">List of Customers</h5>
                     <table id="tblcustomers" class="display" style="width:100%">
                         <thead>

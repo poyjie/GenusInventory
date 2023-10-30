@@ -55,9 +55,9 @@
 
                     </form><!-- End General Form Elements -->
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8  table-responsive">
                     <h5 class="card-title">Stockin Logs</h5>
-                    <table id="tblstockin" class="display" style="width:100%">
+                    <table id="tblstockin" class="display table-responsive">
                         <thead>
                             <tr>
                                 <th>Branch</th>
@@ -80,9 +80,9 @@
 
             <br><hr><br>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 ">
                     <h5 class="card-title">List of Product Total Stocks</h5>
-                    <table id="tbloverallstocks" class="display" style="width:100%">
+                    <table id="tbloverallstocks" class="display table-responsive"   >
                         <thead>
                             <tr>
                                 <th>Branch</th>
@@ -117,6 +117,7 @@
     $('.js-example-basic-single').select2();
 
     $('#tbloverallstocks').DataTable({
+        autoWidth: true,
         ajax: {
         url: '{{route('stockin.GetAllStocks')}}',
         dataSrc: 'data'
@@ -135,6 +136,7 @@
     });
 
     $('#tblstockin').DataTable({
+        responsive: true,
         ajax: {
         url: '{{route('stockin.GetStocksInRecords')}}',
         dataSrc: 'data'
