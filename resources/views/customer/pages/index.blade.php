@@ -2,15 +2,14 @@
 @section('content_customer')
 
 
-    <div class="site-blocks-cover" style="background-image: url({{asset('assets/customer/images/hero_1.jpg')}});" data-aos="fade">
+    <div class="site-blocks-cover" style="background-image: url({{asset('assets/customer/images/home-banner.jpg')}});" data-aos="fade">
       <div class="container">
         <div class="row align-items-start align-items-md-center justify-content-end">
-          <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
-            <h1 class="mb-2">Finding Your Perfect Shoes</h1>
+          <div class="col-md-5 text-center text-md-left pt-3 pt-md-0">
+            <h1 class="mb-2 text-light bg-dark">Finding Your Perfect Need</h1>
             <div class="intro-text text-center text-md-left">
-              <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla. </p>
-              <p>
-                <a href="#" class="btn btn-sm btn-primary">Shop Now</a>
+
+                <a href="#" class="btn btn-lg btn-warning">Shop Now</a>
               </p>
             </div>
           </div>
@@ -26,7 +25,7 @@
               <span class="icon-truck"></span>
             </div>
             <div class="text">
-              <h2 class="text-uppercase">Free Shipping</h2>
+              <h2 class="text-uppercase text-light">Free Shipping</h2>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
             </div>
           </div>
@@ -224,8 +223,8 @@
           <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
             <h3 class="footer-heading mb-4">Promo</h3>
             <a href="#" class="block-6">
-              <img src="{{asset('assets/customer/images/hero_1.jpg')}}" alt="Image placeholder" class="img-fluid rounded mb-4">
-              <h3 class="font-weight-light  mb-0">Finding Your Perfect Shoes</h3>
+              <img src="{{asset('assets/customer/images/home-banner.jpg')}}" alt="Image placeholder" class="img-fluid rounded mb-4">
+              <h3 class="font-weight-light text-light mb-0">Finding Your Perfect Shoes</h3>
               <p>Promo from  nuary 15 &mdash; 25, 2019</p>
             </a>
           </div>

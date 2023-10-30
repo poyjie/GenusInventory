@@ -46,8 +46,6 @@ class CustomAuthController extends Controller
             }else{
                 return redirect("/customer")->with(['msg'=>'Login details are not valid']);
             }
-
-
         }
 
         return redirect("/login")->with(['msg'=>'Login details are not valid']);
@@ -65,7 +63,6 @@ class CustomAuthController extends Controller
             }
 
         }
-        return redirect("/login")->withSuccess('You are not allowed to access');
     }
 
     public function signOut() {

@@ -30,7 +30,7 @@ class RedirectIfAuthenticated
 
               } else {
 
-                  return redirect()->route('login')->with('msg','You are not allowed to access this system');
+                //   return redirect()->route('mainpage')->with('msg','You are not allowed to access this system');
 
               }
 
