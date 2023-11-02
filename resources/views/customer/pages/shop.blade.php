@@ -39,16 +39,40 @@
 
             <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
               <div class="block-4 text-center border">
-                <figure class="block-4-image">
-                  <a href="/shop/single"><img src="{{asset('assets/customer/images/cloth_1.jpg')}}" alt="Image placeholder" class="img-fluid"></a>
+                <figure class="block-4-image" >
+                  <a href="/shop/single"><img src="{{asset('assets/customer/images/cloth_1.png')}}" alt="Image placeholder" class="img-fluid" ></a>
                 </figure>
                 <div class="block-4-text p-4">
-                  <h3><a href="/shop/single">Tank Top</a></h3>
-                  <p class="mb-0">Finding perfect t-shirt</p>
+                  <h3><a href="/shop/single">GASUL</a></h3>
+                  <p class="mb-0">11kg</p>
                   <p class="text-primary font-weight-bold">₱50</p>
                 </div>
               </div>
             </div>
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image" >
+                    <a href="/shop/single"><img src="{{asset('assets/customer/images/cloth_1.png')}}" alt="Image placeholder" class="img-fluid" ></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="/shop/single">GASUL</a></h3>
+                    <p class="mb-0">11kg</p>
+                    <p class="text-primary font-weight-bold">₱50</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image" >
+                    <a href="/shop/single"><img src="{{asset('assets/customer/images/cloth_1.png')}}" alt="Image placeholder" class="img-fluid" ></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a href="/shop/single">GASUL</a></h3>
+                    <p class="mb-0">11kg</p>
+                    <p class="text-primary font-weight-bold">₱50</p>
+                  </div>
+                </div>
+              </div>
 
 
           </div>
@@ -70,6 +94,12 @@
         </div>
 
         <div class="col-md-3 order-1 mb-5 mb-md-0">
+
+            <form action="#" class="site-block-top-search">
+                <span class="icon icon-search2"></span>
+                <input type="text" class="form-control border-0" placeholder="Search">
+            </form>
+            <hr>
           <div class="border p-4 rounded mb-4">
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
             <ul class="list-unstyled mb-0">

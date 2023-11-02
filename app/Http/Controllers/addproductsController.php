@@ -43,10 +43,22 @@ class addproductsController extends Controller
       return response()->json(['data'=> $data]);
     }
 
-    public function GetProductsCashier()
+    public function GetProductsCashier($branchname)
     {
-      $data = DB::table('v_products')
-          ->select(DB::raw('*'))
+      $data = DB::table('v_stockall')
+          ->select(DB::raw('sku,name,totalstockin,sellprice'))
+          ->where('branchname',$branchname)
+          ->get()->toArray();
+
+      return response()->json($data);
+    }
+
+    public function GetSingleProductsCashier($branchname,$sku)
+    {
+      $data = DB::table('v_stockall')
+          ->select(DB::raw('sku,name,totalstockin,sellprice'))
+          ->where('branchname',$branchname)
+          ->where('sku',$sku)
           ->get()->toArray();
 
       return response()->json($data);
