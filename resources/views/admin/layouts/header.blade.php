@@ -184,6 +184,11 @@
             </a>
           </li>
           <li>
+            <a href="/admin/transferofstocks">
+              <i class="bi bi-circle"></i><span>Transfer of Stock</span>
+            </a>
+          </li>
+          <li>
             <a href="charts-chartjs.html">
               <i class="bi bi-circle"></i><span>Settings</span>
             </a>

@@ -38,4 +38,12 @@ class stockinController extends Controller
       return response()->json(['data'=> $data]);
     }
 
+    public function GetProductPerbranch($branchname){
+      $data = DB::table('v_stockall')
+          ->select(DB::raw('*'))
+          ->where('branchname',$branchname)
+          ->get();
+          return response()->json(['data'=> $data]);
+    }
+
 }

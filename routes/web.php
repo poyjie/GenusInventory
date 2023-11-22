@@ -8,6 +8,9 @@ use App\Http\Controllers\addproductsController;
 use App\Http\Controllers\addcustomersController;
 use App\Http\Controllers\stockinController;
 use App\Http\Controllers\salesController;
+use App\Http\Controllers\PDFExportController;
+use App\Http\Controllers\HomeController;
+use App\Models\Products;
 
 Route::middleware(['guest:web', 'prevent.back.history'])->group(function () {
     Route::get('/home', function () {
@@ -32,7 +35,6 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
     Route::get('/signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
-
     //MENU ADMIN
     Route::get('/admin/addcustomer', function () {
         return view('admin.pages.customer_profile.addcustomer');
@@ -50,7 +52,9 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
         return view('admin.pages.inventory.stockin');
     })->name('stockin.page');
 
-
+    Route::get('/admin/transferofstocks', function () {
+        return view('admin.pages.inventory.transferofstocks');
+    })->name('transferofstocks.page');
 
     //FORMS
     Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
@@ -62,19 +66,29 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
     Route::get('/admin/addcustomers/getcustomers', [addcustomersController::class, 'GetCustomers'])->name('addcustomers.getcustomers');
     Route::get('/admin/stockin/allstocks', [stockinController::class, 'GetAllStocks'])->name('stockin.GetAllStocks');
     Route::get('/admin/stockin/GetStocksInRecords', [stockinController::class, 'GetStocksInRecords'])->name('stockin.GetStocksInRecords');
-
-
+    Route::get('/admin/transferofstocks/GetProductPerbranch/{branchname}', [stockinController::class, 'GetProductPerbranch'])->name('stockin.GetProductPerbranch');
+    
+    
 });
 
 Route::get('/admin/addproduct/getproducts/cashier/{branchname}', [addproductsController::class, 'GetProductsCashier'])->name('addproducts.getproducts.cashier');
 Route::get('/admin/addproduct/getproducts/cashier/{branchname}/{sku}', [addproductsController::class, 'GetSingleProductsCashier'])->name('addproducts.getsingleproducts.cashier');
+
 Route::post('/cashier/storesales', [salesController::class, 'store'])->name('cashier.storesales');
+Route::post('/cashier/store_transaction_cash', [salesController::class, 'TransactCash'])->name('cashier.TransactCash');
+Route::get('/cashier/GetTransactionNum/{branchname}/{cashiernum}', [salesController::class, 'GetTransactionNum'])->name('cashier.GetTransactionNum');
+Route::get('/cashier/AddTranscationNumber/{branchname}/{cashiernum}', [salesController::class, 'AddTranscationNumber'])->name('cashier.AddTranscationNumber');
 
 //MENU MAIN PAGE
-Route::get('/shop', function () {
-    return view('customer.pages.shop');
-})->name('shop.page');
+Route::get('/shop', [HomeController::class, 'index'])->name('shop.page');
 
 Route::get('/shop/single', function () {
     return view('customer.pages.shop_single');
 })->name('shopsingle.page');
+
+
+//PDF REPORT
+Route::get('/myproducts', [PDFExportController::class, 'pdproductbarcode'])->name('pdf.products');
+// Route::get('/myproducts', function () {
+//     return view('admin.reports.allproducts');
+// })->name('pdf.products');

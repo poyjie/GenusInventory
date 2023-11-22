@@ -56,7 +56,7 @@ class addproductsController extends Controller
     public function GetSingleProductsCashier($branchname,$sku)
     {
       $data = DB::table('v_stockall')
-          ->select(DB::raw('sku,name,totalstockin,sellprice'))
+          ->select(DB::raw('sku,name,runningstock,sellprice'))
           ->where('branchname',$branchname)
           ->where('sku',$sku)
           ->get()->toArray();
