@@ -79,12 +79,10 @@ Route::post('/cashier/store_transaction_cash', [salesController::class, 'Transac
 Route::get('/cashier/GetTransactionNum/{branchname}/{cashiernum}', [salesController::class, 'GetTransactionNum'])->name('cashier.GetTransactionNum');
 Route::get('/cashier/AddTranscationNumber/{branchname}/{cashiernum}', [salesController::class, 'AddTranscationNumber'])->name('cashier.AddTranscationNumber');
 
+
 //MENU MAIN PAGE
 Route::get('/shop', [HomeController::class, 'index'])->name('shop.page');
-
-Route::get('/shop/single', function () {
-    return view('customer.pages.shop_single');
-})->name('shopsingle.page');
+Route::get('/shop/{id}', [HomeController::class, 'productsingle'])->name('shope.single');
 
 
 //PDF REPORT

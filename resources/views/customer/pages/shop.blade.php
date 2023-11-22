@@ -18,8 +18,9 @@
                     Categories
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                      <a class="dropdown-item" href="/shop">All</a>
                     @foreach ($category  as $dt)
-                      <a class="dropdown-item" href="#">{{ $dt->categoryname }}</a>
+                      <a class="dropdown-item" href="/shop?search={{ $dt->id }}">{{ $dt->categoryname }}</a>
                     @endforeach
                   </div>
                 </div>
@@ -31,12 +32,12 @@
          <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
           <div class="block-4 text-center border">
             <figure class="block-4-image" >
-              <a href="/shop/single"><img src="{{asset('assets/customer/images/cloth_1.png')}}" alt="Image placeholder" class="img-fluid" ></a>
+              <a href="/shop/{{ $item->id }}"><img src="{{asset('assets/customer/images/cloth_1.png')}}" alt="Image placeholder" class="img-fluid" ></a>
             </figure>
             <div class="block-4-text p-4">
-              <h3><a href="/shop/single">{{ $item->name }}</a></h3>
-              <p class="mb-0">11kg</p>
-              <p class="text-primary font-weight-bold">{{ $item->sellprice }}₱50</p>
+              <h3><a href="/shop/{{ $item->id }}">{{ $item->name }}</a></h3>
+              {{-- <p class="mb-0">>{{ $item->name }}</p> --}}
+              <p class="text-primary font-weight-bold">₱ {{ $item->sellprice }}</p>
             </div>
           </div>
         </div>
@@ -71,8 +72,9 @@
           <div class="border p-4 rounded mb-4">
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
             <ul class="list-unstyled mb-0">
+                <li class="mb-1"><a class="d-flex" href="/shop">All</a></span></a></li>
               @foreach ($category  as $dt)
-                <li class="mb-1"><a class="d-flex" href="#">{{ $dt->categoryname }}</a></span></a></li>
+                <li class="mb-1"><a class="d-flex" href="/shop?search={{ $dt->id }}">{{ $dt->categoryname }}</a></span></a></li>
               @endforeach
             </ul>
           </div>
