@@ -11,7 +11,7 @@
         <div class="col-md-6">
           <h2 class="text-black">{{ $product->name }}</h2>
           <p>{{ $product->proddesc }}</p>
-
+          @csrf 
           <p><strong class="text-primary h4">₱ {{ $product->sellprice }}</strong></p>
           {{-- <div class="mb-1 d-flex">
             <label for="option-sm" class="d-flex mr-3 mb-3">
@@ -32,14 +32,16 @@
             <div class="input-group-prepend">
               <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
             </div>
-            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <input type="text" id="prodid" class="form-control text-center" value="{{ $product->id }}" hidden>
+            
+            <input type="text" id="qty" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
             <div class="input-group-append">
               <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
             </div>
           </div>
 
           </div>
-          <p><a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
+          <p><button id="addtocartbtn" class="buy-now btn btn-sm btn-primary">Add To Cart</button></p>
 
         </div>
       </div>
@@ -121,5 +123,38 @@
       </div>
     </div>
   </div> --}}
+  <script>
+    $(document).ready(function() {
+       $("#addtocartbtn").click(function() {
+           // Data to be sent
+           var qty = $('#qty').val();
+           var prodid = $('#prodid').val();
+           var token = $('_token').val();
+           
+           var data = {
+               // Add your data here, e.g.,
+               qty: qty,
+               productid: prodid,
+               userid: "{{ session('user')[0]->id }}",
+               CSRF: token
+           };
 
+           $.ajax({
+               type: "POST",
+               url: "{{ route('cart.store') }}", // Replace with your Laravel route
+               data: data,
+               success: function(response) {
+                   // Handle successful response
+                   console.log(response);
+                   // You can update the page content here
+               },
+               error: function(error) {
+                   // Handle error
+                   console.error(error);
+               }
+           });
+       });
+   });
+ </script>
+ 
 @endsection

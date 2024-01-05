@@ -10,6 +10,7 @@ use App\Http\Controllers\stockinController;
 use App\Http\Controllers\salesController;
 use App\Http\Controllers\PDFExportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 use App\Models\Products;
 
 Route::middleware(['guest:web', 'prevent.back.history'])->group(function () {
@@ -56,10 +57,16 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
         return view('admin.pages.inventory.transferofstocks');
     })->name('transferofstocks.page');
 
+    Route::get('/mycart', function () {
+        return view('admin.pages.inventory.transferofstocks');
+    })->name('transferofstocks.page');
+
     //FORMS
     Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
     Route::post('/admin/addcustomers/storecustomer', [addcustomersController::class, 'store'])->name('addcustomers.store');
     Route::post('/admin/stockin/storestockin', [stockinController::class, 'store'])->name('stockin.store');
+    Route::post('/shop/addtocart', [CartController::class, 'store'])->name('cart.store');
+
 
     //DISPLAYS
     Route::get('/admin/addproduct/getproducts', [addproductsController::class, 'GetProducts'])->name('addproducts.getproducts');

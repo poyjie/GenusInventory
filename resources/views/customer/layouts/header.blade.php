@@ -8,7 +8,6 @@
   <title>Genus Inventory System</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -26,6 +25,9 @@
   <link rel="stylesheet" href="{{asset('assets/customer/css/owl.theme.default.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/customer/css/aos.css')}}">
   <link rel="stylesheet" href="{{asset('assets/customer/css/style.css')}}">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
 
 </head>
 @include('customer.layouts.spinner')
