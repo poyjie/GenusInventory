@@ -31,6 +31,36 @@ class salesController extends Controller
 
     }
 
+    public function StoreWeb(Request $request)
+    {
+        $sales = new Sales();
+        $userid= $request->input('userid');
+        $mycartdata = DB::table('v_mycart')
+        ->select(DB::raw('*'))
+        ->where('userid',session('user')[0]->id)
+        ->get();
+
+        $this->AddTranscationNumber('web','web');
+
+
+        
+      //   $sales->branch = $request->input('branch');      
+      //   $sales->cashiernum = $request->input('cashiernum'); 
+        
+      //   $sales->user = $request->input('user');           
+      //   $sales->transactionnum = $request->input('transactionnum');
+      //   $sales->sku = $request->input('sku');
+      //   $sales->amount = $request->input('amount');
+      //   $sales->totalamount = $request->input('totalamount');
+      //   $sales->qty = $request->input('qty');
+      //   $sales->save();
+
+      return response()->json([
+        'msg'=>$mycartdata,
+      ],200);
+
+    }
+
     public function AddTranscationNumber( $branchname,$cashiernum)
     {
 

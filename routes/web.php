@@ -11,6 +11,7 @@ use App\Http\Controllers\salesController;
 use App\Http\Controllers\PDFExportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\MyCartController;
 use App\Models\Products;
 
 Route::middleware(['guest:web', 'prevent.back.history'])->group(function () {
@@ -57,9 +58,12 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
         return view('admin.pages.inventory.transferofstocks');
     })->name('transferofstocks.page');
 
-    Route::get('/mycart', function () {
-        return view('admin.pages.inventory.transferofstocks');
-    })->name('transferofstocks.page');
+    //CART
+    Route::get('/mycart', [MyCartController::class, 'index'])->name('mycart');
+    Route::get('/mycart/api', [MyCartController::class, 'show'])->name('mycart.show');
+
+    //CHECKOUT
+    Route::post('/mycart/checkout', [salesController::class, 'StoreWeb'])->name('mycart.StoreWeb');
 
     //FORMS
     Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
