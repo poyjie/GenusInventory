@@ -12,6 +12,7 @@ use App\Http\Controllers\PDFExportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MyCartController;
+use App\Http\Controllers\TransferController;
 use App\Models\Products;
 
 Route::middleware(['guest:web', 'prevent.back.history'])->group(function () {
@@ -69,6 +70,7 @@ Route::middleware(['auth:web','prevent.back.history','check.user.login'])->group
     Route::post('/admin/addproduct/storeproduct', [addproductsController::class, 'store'])->name('addproducts.store');
     Route::post('/admin/addcustomers/storecustomer', [addcustomersController::class, 'store'])->name('addcustomers.store');
     Route::post('/admin/stockin/storestockin', [stockinController::class, 'store'])->name('stockin.store');
+    Route::post('/admin/transferofstocks/transferstockin', [TransferController::class, 'store'])->name('transferstockin.store');
     Route::post('/shop/addtocart', [CartController::class, 'store'])->name('cart.store');
 
 

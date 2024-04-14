@@ -8,13 +8,23 @@ class stockinController extends Controller
 {
     public function Store(Request $request)
     {
-        $products = new Inventory();
-        $products->branchid = $request->input('branchid');
-        $products->productid = $request->input('productid');
-        $products->stockin = $request->input('stockin');
 
-        $products->save();
 
+      
+        $inventory = Inventory::where(['branchid' => $request->input('branchid'), 'productid' => $request->input('productid')])->first();
+        
+        if($inventory){
+          $inventory->stockin = $inventory->stockin + $request->input('stockin');
+          $inventory->save();
+        }
+        else{
+          $products = new Inventory();
+          $products->branchid = $request->input('branchid');
+          $products->productid = $request->input('productid');
+          $products->stockin = $request->input('stockin');
+          $products->save();
+        }
+      
       return response()->json([
         'msg'=>'Successfully Saved',
       ],200);
@@ -39,7 +49,7 @@ class stockinController extends Controller
     }
 
     public function GetProductPerbranch($branchname){
-      $data = DB::table('v_stockall')
+      $data = DB::table('v_stockrecords')
           ->select(DB::raw('*'))
           ->where('branchname',$branchname)
           ->get();
