@@ -157,16 +157,11 @@
               <i class="bi bi-circle"></i><span>Add Product Category</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="forms-elements.html">
               <i class="bi bi-circle"></i><span>Import/Export Product</span>
             </a>
-          </li>
-          <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>BarCode Generator</span>
-            </a>
-          </li>
+          </li> --}}
         </ul>
       </li><!-- End Forms Nav -->
 
@@ -186,11 +181,6 @@
           <li>
             <a href="/admin/transferofstocks">
               <i class="bi bi-circle"></i><span>Transfer of Stock</span>
-            </a>
-          </li>
-          <li>
-            <a href="charts-chartjs.html">
-              <i class="bi bi-circle"></i><span>Settings</span>
             </a>
           </li>
         </ul>

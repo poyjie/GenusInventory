@@ -119,15 +119,17 @@
                 <table id="tblproducts" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Supplier</th>
-                            <th>Brand</th>
-                            <th>Category</th>
+                            <th>Barcode</th>
                             <th>SKU</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Base Price</th>
                             <th>Sell Price</th>
                             <th>Min Stock</th>
+                            <th>Supplier</th>
+                            <th>Brand</th>
+                            <th>Category</th>
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -140,34 +142,45 @@
 
 
 
-
-
 @endsection
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
 
 <script>
     $('.form-select').select2();
+ 
     $('#tblproducts').DataTable({
         ajax: {
         url: '{{route('addproducts.getproducts')}}',
         dataSrc: 'data'
         },
         columns: [
-            { data: 'suppliername' },
-            { data: 'brandname' },
-            { data: 'categoryname' },
+            {
+                "render": function (data, type, JsonResultRow, meta) {
+                    return '<svg class="barcode" jsbarcode-value="'+ JsonResultRow['sku'] + '" jsbarcode-textmargin="0" jsbarcode-fontoptions="bold"> </svg>'
+                }
+            },
             { data: 'sku' },
             { data: 'name' },
             { data: 'proddesc' },
             { data: 'baseprice' },
             { data: 'sellprice' },
             { data: 'min_stock' },
-        ]
+            { data: 'suppliername' },
+            { data: 'brandname' },
+            { data: 'categoryname' },
+          
+        ],
+        "initComplete": function(settings, json) {
+            JsBarcode(".barcode").init();
+        }
     });
 
     $("#frm-addproduct").submit(function (event) {
        event.preventDefault();
+
        var formData = {
          _token: $("input[name=_token]").val(),
          supplierid:$("#supplierid").val(),
@@ -209,13 +222,11 @@
             Swal.fire('Changes are not saved', '', 'info')
         }
         })
-
-
-
        console.log(formData);
-
-
+       JsBarcode(".barcode").init();
      });
+ 
+
 </script>
 
 @endpush

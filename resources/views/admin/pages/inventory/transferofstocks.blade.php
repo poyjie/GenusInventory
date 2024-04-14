@@ -3,7 +3,6 @@
 @php
    $branches = DB::select("SELECT * FROM branch");
    $products = DB::select("SELECT * FROM v_products ");
-
 @endphp
 <div class="row">
     <div class="card">
@@ -15,7 +14,7 @@
                     <form id="frm-stocktranfer">
                         @csrf 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label" >From</label>
+                            <label for="inputText" class="col-sm-2 col-form-label" >From Branch</label>
                             <div class="col-sm-10">
                                 <select class="js-example-basic-single" name="branchidfrom" id="branchidfrom" style="width: 100%">
                                     <option value="">-CHOOSE-</option>
@@ -40,7 +39,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label" >To</label>
+                            <label for="inputText" class="col-sm-2 col-form-label" >To Branch</label>
                             <div class="col-sm-10">
                                 <select class="js-example-basic-single" name="branchidto" id="branchidto" style="width: 100%">
                                     <option value="">-CHOOSE-</option>
@@ -130,7 +129,6 @@
 @push('scripts')
 
 <script>
-    $('.js-example-basic-single').select2();
 
     $('#branchidfrom').on('change', function (e) {
         $("#productid").empty();
