@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2024 at 04:12 AM
+-- Generation Time: Apr 14, 2024 at 01:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -105,20 +105,6 @@ CREATE TABLE `cart` (
   `created_at` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `productid`, `userid`, `qty`, `updated_at`, `created_at`) VALUES
-(1, 0, 8, 1, '2023-12-20 13:36:42', '2023-12-20 13:36:42'),
-(2, 0, 8, 1, '2023-12-20 13:39:58', '2023-12-20 13:39:58'),
-(3, 2, 8, 1, '2023-12-20 13:40:11', '2023-12-20 13:40:11'),
-(4, 2, 8, 1, '2024-01-05 15:04:52', '2024-01-05 15:04:52'),
-(5, 13, 8, 1, '2024-01-05 15:05:06', '2024-01-05 15:05:06'),
-(6, 13, 8, 1, '2024-01-05 15:05:16', '2024-01-05 15:05:16'),
-(7, 14, 8, 10, '2024-01-05 15:05:44', '2024-01-05 15:05:44'),
-(8, 0, 8, 100, '2024-01-07 09:22:26', '2024-01-07 09:22:26');
-
 -- --------------------------------------------------------
 
 --
@@ -193,9 +179,10 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `branchid`, `productid`, `stockin`, `updated_at`, `created_at`) VALUES
-(6, 1, 13, '500', '2023-10-26 14:42:54', '2023-10-26 14:42:54'),
-(8, 1, 16, '2000', '2023-11-07 00:08:53', '2023-10-26 14:48:02'),
-(11, 1, 14, '60', '2024-01-30 21:40:19', '2023-10-26 14:48:47');
+(5, 1, 1, '450', '2024-04-14 11:20:44', '2024-04-14 11:16:36'),
+(6, 1, 2, '1000', '2024-04-14 11:16:46', '2024-04-14 11:16:46'),
+(7, 2, 2, '100', '2024-04-14 11:19:00', '2024-04-14 11:19:00'),
+(8, 2, 1, '100', '2024-04-14 11:20:44', '2024-04-14 11:20:36');
 
 -- --------------------------------------------------------
 
@@ -224,12 +211,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `supplierid`, `brandid`, `categoryid`, `sku`, `name`, `proddesc`, `baseprice`, `sellprice`, `min_stock`, `image`, `updated_at`, `created_at`) VALUES
-(0, 1, 2, 1, '2', 'Sample Product', 'PRODUCT SAMPLE DECRIPTOIN', '212', '21', '212', '21', '2', '2'),
-(2, 1, 2, 3, '121', 'Lorem ipsum12', 'PRODUCT LOREM DECRIPTOIN', '2', '12', '2213', 'g', 'yu', 'fyt'),
-(13, 1, 1, 2, '0010010020013', 'PRODUCT A', 'PRODUCT PRODUCT A DECRIPTOIN', '12', '50', '3', 'NA', '2023-10-26 09:20:24', '2023-10-26 09:20:24'),
-(14, 1, 2, 2, '0010020020014', 'PRODUCT B', 'PRODUCT PRODUCT BDECRIPTOIN', '50', '100', '5', 'NA', '2023-10-26 14:44:10', '2023-10-26 14:44:10'),
-(15, 5, 3, 4, '0050030040015', 'PRODUCT C', 'PRODUCT PRODUCT C DECRIPTOIN', '600', '700', '5', 'NA', '2023-10-26 14:45:20', '2023-10-26 14:45:20'),
-(16, 4, 3, 4, '0040030040016', 'PRODUCT D', 'PRODUCT PRODUCT D DECRIPTOIN', '300', '400', '0', 'NA', '2023-10-26 14:47:28', '2023-10-26 14:47:28');
+(1, 1, 1, 2, '001001002001', 'test product', 'test product', '51', '50', '50', 'NA', '2024-04-14 11:15:20', '2024-04-14 11:15:20'),
+(2, 3, 4, 1, '003004001002', 'test product2', 'test product2', '50', '50', '50', 'NA', '2024-04-14 11:16:09', '2024-04-14 11:16:09');
 
 -- --------------------------------------------------------
 
@@ -657,6 +640,18 @@ ALTER TABLE `cart`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `inventory`
+--
+ALTER TABLE `inventory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
@@ -676,8 +671,7 @@ ALTER TABLE `transaction_cash`
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `productid` FOREIGN KEY (`productid`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
